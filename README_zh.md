@@ -97,17 +97,20 @@ cd android
 
 ## Docker 部署
 
-本项目**不提供也不推送任何在线镜像**，请在设备上从源码本地构建（无需登录任何镜像仓库）：
+镜像由 GitHub Actions 在云端从本仓库源码自动构建，并推送到 GHCR。在设备上直接拉取即可运行，无需登录、无需本机编译：
 
 ```bash
-# 1. 把本仓库源码（或发布包里的源码 zip）上传到设备并解压，进入解压目录
-# 2. 从源码本地构建镜像并启动（Web 版，包含本项目全部定制功能）
-docker compose -f docker/docker-compose.yml up -d --build
+# 直接拉取已构建好的镜像并启动（Web 版，包含本项目全部定制功能）
+docker compose -f docker/docker-compose.yml up -d
 
-# 或手动构建（镜像仅保存在本机，不推送）
-docker build -f docker/Dockerfile -t embyxpro:local .
-docker run -d --network host -e APP_LANG=zh -e APP_PORT=8090 embyxpro:local
+# 或手动拉取运行
+docker pull ghcr.io/tangzimeng/embyxpro:latest
+docker run -d --name embyxpro --restart unless-stopped --network host -e APP_LANG=zh -e APP_PORT=8090 ghcr.io/tangzimeng/embyxpro:latest
 ```
+
+访问 `http://设备IP:8090`。中文/英文由 `APP_LANG` 控制（默认 zh）。
+
+> ℹ️ 若 GHCR 镜像不可拉取，可改从源码本地构建：在 `docker/docker-compose.yml` 里注释掉 `image:` 行、取消 `build:` 段注释，然后把源码上传到设备解压后执行 `docker compose -f docker/docker-compose.yml up -d --build`。
 
 ## 签名配置
 

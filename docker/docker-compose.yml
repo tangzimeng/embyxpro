@@ -1,14 +1,15 @@
 services:
   embyx:
-    # 从本仓库源码本地构建（包含本项目全部定制功能），不推送也不拉取远程镜像
-    # 先把源码上传到设备解压，再在解压目录执行：docker compose -f docker/docker-compose.yml up -d --build
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile
-    image: embyxpro:local
+    # 直接拉取 GitHub Actions 自动构建并推送的镜像（含本项目全部定制功能）
+    # 镜像由本仓库 .github/workflows/docker-build.yml 在云端构建，无需本机 Docker
+    image: ghcr.io/tangzimeng/embyxpro:latest
     container_name: embyxpro
     restart: unless-stopped
     network_mode: host
     environment:
       - APP_LANG=zh # zh (中文), en (English)
       - APP_PORT=8090 # 访问端口 (Access Port)
+    # 如需从源码本地构建（不依赖 GHCR），去掉下面 build 段注释并把上面的 image 行注释掉：
+    # build:
+    #   context: ..
+    #   dockerfile: docker/Dockerfile
