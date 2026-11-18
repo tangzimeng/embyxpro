@@ -2,6 +2,7 @@ services:
   embyx:
     # 镜像由本仓库 .github/workflows/build-docker.yml 在云端自动构建并推送到 GHCR
     # 直接拉取即可，无需登录、无需本机编译（含本项目全部定制功能）
+    # 内置飞牛适配网关：必须用 host 网络，网关才能访问宿主机飞牛影视 127.0.0.1:8005
     image: ghcr.io/tangzimeng/embyxpro:latest
     container_name: embyxpro
     restart: unless-stopped

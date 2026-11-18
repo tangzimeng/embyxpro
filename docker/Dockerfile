@@ -1,25 +1,28 @@
-# Dockerfile for EmbyX
-# 静态网页仅需 Nginx
-FROM nginx:alpine
+# Dockerfile for EmbyX Pro
+# 内置飞牛适配 Go 网关：网关同时负责静态页面服务 + 飞牛影视/Emby/Jellyfin API 反代
+# 行为等同官方 fpk，部署时用 host 网络，网关可直接访问宿主机飞牛影视 127.0.0.1:8005
+FROM alpine:latest
 WORKDIR /app
 
-# 复制中英文版本到镜像内部存放
+# 中英文前端源码
 COPY zh/ /app/dist/zh/
 COPY en/ /app/dist/en/
 
-# 复制 nginx 配置
-COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+# 飞牛适配网关（架构自适应，纯静态二进制，musl/glibc 均可）
+COPY docker/bin/proxy-x86_64 /app/bin/proxy-x86_64
+COPY docker/bin/proxy-aarch64 /app/bin/proxy-aarch64
 
-# 复制并设置启动脚本
+# 启动脚本
 COPY docker/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint.sh /app/bin/proxy-x86_64 /app/bin/proxy-aarch64 \
+    && mkdir -p /app/www /app/logs
 
-# 预设默认语言和端口环境变量
-ENV APP_LANG=en
+# 默认语言与端口
+ENV APP_LANG=zh
 ENV APP_PORT=8090
+ENV TRIM_APPDEST=/app
+ENV EMBYX_LOG_DIR=/app/logs
 
-# EXPOSE 在 host 模式下仅作声明
 EXPOSE 8090
 
-# 使用自定义脚本启动
 ENTRYPOINT ["/entrypoint.sh"]
