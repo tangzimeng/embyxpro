@@ -1,7 +1,7 @@
 services:
   embyx:
-    # 直接拉取 GitHub Actions 自动构建并推送的镜像（含本项目全部定制功能）
-    # 镜像由本仓库 .github/workflows/docker-build.yml 在云端构建，无需本机 Docker
+    # 镜像由本仓库 .github/workflows/build-docker.yml 在云端自动构建并推送到 GHCR
+    # 直接拉取即可，无需登录、无需本机编译（含本项目全部定制功能）
     image: ghcr.io/tangzimeng/embyxpro:latest
     container_name: embyxpro
     restart: unless-stopped
@@ -9,7 +9,3 @@ services:
     environment:
       - APP_LANG=zh # zh (中文), en (English)
       - APP_PORT=8090 # 访问端口 (Access Port)
-    # 如需从源码本地构建（不依赖 GHCR），去掉下面 build 段注释并把上面的 image 行注释掉：
-    # build:
-    #   context: ..
-    #   dockerfile: docker/Dockerfile

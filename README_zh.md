@@ -110,8 +110,6 @@ docker run -d --name embyxpro --restart unless-stopped --network host -e APP_LAN
 
 访问 `http://设备IP:8090`。中文/英文由 `APP_LANG` 控制（默认 zh）。
 
-> ℹ️ 若 GHCR 镜像不可拉取，可改从源码本地构建：在 `docker/docker-compose.yml` 里注释掉 `image:` 行、取消 `build:` 段注释，然后把源码上传到设备解压后执行 `docker compose -f docker/docker-compose.yml up -d --build`。
-
 ## 签名配置
 
 本仓库**不包含任何密钥或口令**。`android/app/build.gradle` 的签名配置从环境变量读取，

@@ -97,20 +97,18 @@ cd android
 
 ## Docker 部署
 
-The image is built automatically from this repository's source by GitHub Actions in the cloud and pushed to GHCR. Pull and run it directly — no login, no local build required:
+镜像由 GitHub Actions 在云端从本仓库源码自动构建，并推送到 GHCR。在设备上直接拉取即可运行，无需登录、无需本机编译：
 
 ```bash
-# Pull the pre-built image and start (Web edition, includes all custom features of this project)
+# 直接拉取已构建好的镜像并启动（Web 版，包含本项目全部定制功能）
 docker compose -f docker/docker-compose.yml up -d
 
-# Or pull and run manually
+# 或手动拉取运行
 docker pull ghcr.io/tangzimeng/embyxpro:latest
 docker run -d --name embyxpro --restart unless-stopped --network host -e APP_LANG=zh -e APP_PORT=8090 ghcr.io/tangzimeng/embyxpro:latest
 ```
 
-Open `http://device-ip:8090`. Language is controlled by `APP_LANG` (default zh).
-
-> ℹ️ If the GHCR image is unavailable, build from source instead: in `docker/docker-compose.yml`, comment out the `image:` line, uncomment the `build:` block, then upload the source to your device and run `docker compose -f docker/docker-compose.yml up -d --build`.
+访问 `http://设备IP:8090`。中文/英文由 `APP_LANG` 控制（默认 zh）。.
 
 ## 签名配置
 
