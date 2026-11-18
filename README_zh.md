@@ -97,17 +97,17 @@ cd android
 
 ## Docker 部署
 
+本项目**不提供也不推送任何在线镜像**，请在设备上从源码本地构建（无需登录任何镜像仓库）：
+
 ```bash
-# 从本仓库源码构建镜像并启动（Web 版，包含本项目全部定制功能）
+# 1. 把本仓库源码（或发布包里的源码 zip）上传到设备并解压，进入解压目录
+# 2. 从源码本地构建镜像并启动（Web 版，包含本项目全部定制功能）
 docker compose -f docker/docker-compose.yml up -d --build
 
-# 或手动构建
-docker build -f docker/Dockerfile -t ghcr.io/tangzimeng/embyxpro:latest .
-docker run -d --network host -e APP_LANG=zh -e APP_PORT=8090 ghcr.io/tangzimeng/embyxpro:latest
+# 或手动构建（镜像仅保存在本机，不推送）
+docker build -f docker/Dockerfile -t embyxpro:local .
+docker run -d --network host -e APP_LANG=zh -e APP_PORT=8090 embyxpro:local
 ```
-
-> ⚠️ **不要使用 `ghcr.io/juneix/embyx` 预构建镜像**——那是上游原版 EmbyX，
-> 不包含本项目的任何定制功能。本仓库的 `docker-compose.yml` 已改为从源码本地构建。
 
 ## 签名配置
 

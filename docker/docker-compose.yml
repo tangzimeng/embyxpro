@@ -1,11 +1,11 @@
 services:
   embyx:
-    # 从本仓库源码构建（包含本项目全部定制功能）
-    # 注意：不要使用 ghcr.io/juneix/embyx 预构建镜像，那是上游原版
+    # 从本仓库源码本地构建（包含本项目全部定制功能），不推送也不拉取远程镜像
+    # 先把源码上传到设备解压，再在解压目录执行：docker compose -f docker/docker-compose.yml up -d --build
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    image: ghcr.io/tangzimeng/embyxpro:latest
+    image: embyxpro:local
     container_name: embyxpro
     restart: unless-stopped
     network_mode: host
