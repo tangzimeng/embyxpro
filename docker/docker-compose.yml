@@ -1,6 +1,11 @@
 services:
   embyx:
-    image: ghcr.io/juneix/embyx:latest
+    # 从本仓库源码构建（包含本项目全部定制功能）
+    # 注意：不要使用 ghcr.io/juneix/embyx 预构建镜像，那是上游原版
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: embyxpro:latest
     container_name: embyx
     restart: unless-stopped
     network_mode: host
