@@ -59,7 +59,7 @@ zh/                    前端（HTML / JS / CSS / 图片）
 android/               Capacitor 安卓原生工程
   app/src/main/java/   原生壳 MainActivity（含状态栏桥接）
   app/src/main/assets/ 构建时由脚本同步前端产物
-docker/                上游 Docker 部署配置
+docker/                Docker 构建与部署（nginx 静态托管 Web 版）
 scripts/               上游部署脚本
 capacitor.config.json  Capacitor 配置
 ```
@@ -84,6 +84,20 @@ cd android
 
 > `sync_zh.py` 等价 `npx cap copy android`，把 `zh/` 复制到
 > `android/app/src/main/assets/public/`，不删除 Capacitor 生成的 cordova 文件。
+
+## Docker 部署
+
+```bash
+# 从本仓库源码构建镜像并启动（Web 版，包含本项目全部定制功能）
+docker compose -f docker/docker-compose.yml up -d --build
+
+# 或手动构建
+docker build -f docker/Dockerfile -t embyxpro:latest .
+docker run -d --network host -e APP_LANG=zh -e APP_PORT=8090 embyxpro:latest
+```
+
+> ⚠️ **不要使用 `ghcr.io/juneix/embyx` 预构建镜像**——那是上游原版 EmbyX，
+> 不包含本项目的任何定制功能。本仓库的 `docker-compose.yml` 已改为从源码本地构建。
 
 ## 签名配置
 
