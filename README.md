@@ -125,5 +125,5 @@ docker run -d --network host -e APP_LANG=zh -e APP_PORT=8090 ghcr.io/tangzimeng/
 
 ## 免责声明
 
-本项目为个人二次定制，与上游 [juneix/EmbyX](https://github.com/juneix/EmbyX) 无隶属关系。
+本项目为个人二次定制，与上游 [juneix/EmbyX](https://github.com/juneix/EmbyX) 无隶属关系,保留原作者彩蛋空间相关功能。
 使用需自行准备 Emby / Jellyfin 服务器。请在遵守当地法律法规的前提下使用。
