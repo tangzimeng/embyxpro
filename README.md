@@ -16,6 +16,15 @@
 
 ---
 
+## 界面预览
+
+| | |
+|---|---|
+| ![个人中心](pic/screen-personal.png) | ![宫格视图](pic/screen-grid.png) |
+| **个人中心**：账号与服务器管理（多服务器卡片、编辑/设为主/一键删除）+ 全局设置 | **宫格视图**：海报墙 + 时长/进度标注 + 「正在播放」标记 |
+| ![选择媒体源](pic/screen-source.png) | ![横屏自适应](pic/screen-landscape.png) |
+| **选择媒体源**：所有媒体 / 收藏夹 / 演员 / 演员收藏 + 媒体库与播放列表网格 | **横屏自适应**：宽屏多列布局，手机横持同样顺手 |
+
 ## 与上游 EmbyX 的差异
 
 本仓库在上游基础上做了长期的功能定制与体验优化，主要差异如下。
@@ -24,16 +33,8 @@
 
 - 应用名 `EmbyX Pro`，包名 `com.embypro.egglab`，与上游官方包（`juneix.embyx`）相互独立，可并存安装。
 
-### 内置 EmbyX Lab
-
-- 投屏弹窗新增 **Lab** 入口按钮，个人中心新增 **头号玩家** 徽章；
-- 内置激活码体系（`donate.js` / DonateManager），Lab 空间集成激活与说明；
-- **画质 / 短剧 / 投屏三道授权门**：未激活时点击「画质」或「短剧」按钮直达 Lab。
-
 ### 播放与交互
 
-- **HLS 播放优化**：预加载策略（`preloadOnly`）、稳定 PlaySessionId，起播更快、换集不卡顿；
-- **播放隔离**：切到宫格/后台时自动降低非前台视频负载，前台播放不受其他视频影响；
 - **长按头像**：进入当前视频所在文件夹（最深非聚合祖先，`Recursive=false`）并自动定位到该视频；
 - **多选手势**：纵向滑动 = 原生滚动浏览，横向（含横向占优的斜向滑动）= 快速连选，方向一次判定锁定；
 - **宫格切换不中断播放**：切视图时整组移出/移回视频节点，原进度续播；
@@ -59,8 +60,9 @@ zh/                    前端（HTML / JS / CSS / 图片）
 android/               Capacitor 安卓原生工程
   app/src/main/java/   原生壳 MainActivity（含状态栏桥接）
   app/src/main/assets/ 构建时由脚本同步前端产物
-docker/                上游 Docker 部署配置
+docker/                Docker 构建与部署（nginx 静态托管 Web 版）
 scripts/               上游部署脚本
+pic/                   界面截图与宣传图
 capacitor.config.json  Capacitor 配置
 ```
 
@@ -84,6 +86,20 @@ cd android
 
 > `sync_zh.py` 等价 `npx cap copy android`，把 `zh/` 复制到
 > `android/app/src/main/assets/public/`，不删除 Capacitor 生成的 cordova 文件。
+
+## Docker 部署
+
+```bash
+# 从本仓库源码构建镜像并启动（Web 版，包含本项目全部定制功能）
+docker compose -f docker/docker-compose.yml up -d --build
+
+# 或手动构建
+docker build -f docker/Dockerfile -t embyxpro:latest .
+docker run -d --network host -e APP_LANG=zh -e APP_PORT=8090 embyxpro:latest
+```
+
+> ⚠️ **不要使用 `ghcr.io/juneix/embyx` 预构建镜像**——那是上游原版 EmbyX，
+> 不包含本项目的任何定制功能。本仓库的 `docker-compose.yml` 已改为从源码本地构建。
 
 ## 签名配置
 

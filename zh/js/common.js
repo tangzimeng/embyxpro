@@ -662,7 +662,7 @@
         if (lastCheck && now - parseInt(lastCheck) < 24 * 60 * 60 * 1000) return null;
 
         try {
-            const response = await fetch('https://api.github.com/repos/juneix/EmbyX/releases/latest');
+            const response = await fetch('https://api.github.com/repos/tangzimeng/embyxpro/releases/latest');
             if (!response.ok) return null;
             const data = await response.json();
             localStorage.setItem('embyx_last_update_check', now.toString());

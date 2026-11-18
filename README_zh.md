@@ -1,172 +1,121 @@
-<p align="center">
-  <img src="./pic/icon.png" width="128" alt="EmbyX Logo">
-</p>
+# EmbyX Pro
 
-# 📱 EmbyX
+基于 [juneix/EmbyX](https://github.com/juneix/EmbyX)（MIT License）深度定制的 Android 客户端正式发行版。
 
+> 本项目遵循上游 MIT 许可，保留原始版权声明（见 [LICENSE](./LICENSE)）。
+> 上游原版说明见 [README_UPSTREAM.md](./README_UPSTREAM.md)。
 
-EmbyX 是一款专为 Emby / Jellyfin / 飞牛影视🔥/ OpenList 打造的 Web 原生应用，完美复刻抖音·短视频沉浸式交互，让你的私人媒体库焕发全新的刷片体验。🎉
-
-[![GitHub Release](https://img.shields.io/github/v/release/juneix/embyx?style=flat-square&logo=github&color=52B54B)](https://github.com/juneix/embyx/releases)
-[![GitHub Stars](https://img.shields.io/github/stars/juneix/embyx?style=flat-square&logo=github&color=52B54B)](https://github.com/juneix/embyx/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/juneix/embyx?style=flat-square&logo=github&color=52B54B)](https://github.com/juneix/embyx/forks)
-[![Docker Pulls](https://img.shields.io/docker/pulls/juneix/embyx?style=flat-square&logo=docker&color=2496ED)](https://hub.docker.com/r/juneix/embyx)
-[![License: MIT](https://img.shields.io/badge/License-MIT-gray?style=flat-square)](./LICENSE)
-[![Code Size](https://img.shields.io/github/languages/code-size/juneix/embyx?style=flat-square&color=gray)](https://github.com/juneix/embyx)
-
-![EmbyX-1](pic/poster1-zh.webp)
-
-![EmbyX-2](pic/poster2-zh.webp)
-
-## ✨ 功能特色
-
-**💡 核心功能**
-- **流式播放**：抖音操作习惯，沉浸式全屏体验
-- **直接播放**：安卓最高支持 8K AV1 不转码
-- **相册视图**：封面墙浏览，支持分页、换一批
-- **Emby 同步**：支持媒体库、播放列表、收藏夹
-- **键鼠适配**：纯按键控制，电脑、电视轻松摸鱼
-- **PWA 支持**：添加到主屏幕 / 作为应用安装
-- **隐私第一**：数据本地存储，绝不上传云端
-
-**💎 头号玩家**
-- **短剧模式**：支持电视库、文件夹视图，竖屏刷剧
-- **电视投屏**：AirPlay、Chromecast、DLNA 投屏
-- **自动转码**：适配部分老旧设备或外出流量场景
-
-
-## 🚀 快速开始
-
-推荐直接访问我的 EmbyX 官方网站，开箱即用：
-- 🌐 **主站点** - [dy.5nav.eu.org](https://dy.5nav.eu.org)
-- ⚡ **镜像站** - [dy.5nav.pp.ua](https://dy.5nav.pp.ua)
-
-喜欢完全控制？你也可以自托管 EmbyX 应用。
-
-> [!NOTE]
-> EmbyX 的代码开源，核心功能永久免费。开发调试耗费了不少心思与 Token 成本，预览体验功能需「头号玩家」赞助解锁。    
->  
-> 欢迎各位大佬 Fork 用于个人学习、二次开发；衍生版本对外发布请保留原项目出处，请勿直接发布移除/绕过解锁功能的版本。  
-
-📚 完整使用教程: [谢週五の藏经阁](https://5nav.eu.org)
-
-## 📢 广而告之
-
-如果 EmbyX 让你的数字生活变得更轻松，请帮我点亮 GitHub ⭐️，或者把它安利给你的朋友！你也可以在 B 站、小红书、抖音或技术论坛（如 V2EX、LinuxDo、什么值得买、飞牛社区）上分享你的使用心得。作为独立开发者，大家的“自来水”是对我最好的支持。
-
-
-## ❤️ 支持项目
-
-- 打赏鼓励：支持我开发更多有趣应用
-- 互动群聊：加入 💬 [QQ 群](https://qm.qq.com/q/ZzOD5Qbhce) 可在线催更
-- 更多内容：访问 ➡️ [谢週五の藏经阁](https://5nav.eu.org)
-
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <img src="./zh/img/wechat.webp" width="128" /><br/>
-        <sub>微信</sub>
-      </td>
-      <td align="center">
-        <img src="./zh/img/alipay.webp" width="128" /><br/>
-        <sub>支付宝</sub>
-      </td>
-    </tr>
-  </table>
-</div>
-
-## 🔮 播放性能
-
-| 设备 | HEVC 硬解 | AV1 硬解 |
-|:---:|:---:|:---:|
-| 苹果 | A9 (2015) / M1 | A17 Pro (2023) / M3 |
-| 安卓 | 千元机 (2016) | 千元机 (2024) |
-| PC | 6～8 代酷睿·核显 | 11 代酷睿·核显 |
+| 项目 | 说明 |
+|---|---|
+| 应用名 | `EmbyX Pro` |
+| applicationId | `com.embypro.egglab` |
+| versionName / versionCode | `2.1.14` / `138` |
+| 前端 | 原生 JS（`zh/`），无框架 |
+| 原生壳 | Capacitor 8 + Android（`android/`） |
+| 签名 | 详见下方「签名配置」 |
 
 ---
 
-## ⌨️ 快捷键指南
+## 界面预览
 
-| 按键 | 功能 |
-|:---:|---|
-| `W / S / ↑ / ↓` | 上一个 / 下一个视频 |
-| `A / D / ← / → / 双击侧边` | 快退 / 快进 15 秒 |
-| `Space / 单击 OK` | 暂停 / 播放 |
-| `T` | 电视投屏 |
-| `Y` | 演员作品 |
-| `U / 双击 OK` | 收藏视频 |
-| `H` | 添加播放列表 |
-| `J` | 比例切换 |
-| `M` | 音量开关 |
-| `E / Tab 1` | 视图切换 |
-| `R / Tab 2` | 顺序 / 随机 |
-| `G / Tab 3` | 选择媒体源 |
-| `I / Tab 4` | 个人中心 |
-| `F / 右上角` | 全屏切换 |
-| `V / 标题区` | 流媒体详情 |
+| | |
+|---|---|
+| ![个人中心](pic/screen-personal.png) | ![宫格视图](pic/screen-grid.png) |
+| **个人中心**：账号与服务器管理（多服务器卡片、编辑/设为主/一键删除）+ 全局设置 | **宫格视图**：海报墙 + 时长/进度标注 + 「正在播放」标记 |
+| ![选择媒体源](pic/screen-source.png) | ![横屏自适应](pic/screen-landscape.png) |
+| **选择媒体源**：所有媒体 / 收藏夹 / 演员 / 演员收藏 + 媒体库与播放列表网格 | **横屏自适应**：宽屏多列布局，手机横持同样顺手 |
 
----
+## 与上游 EmbyX 的差异
 
-## 📁 文件目录
+本仓库在上游基础上做了长期的功能定制与体验优化，主要差异如下。
+
+### 品牌
+
+- 应用名 `EmbyX Pro`，包名 `com.embypro.egglab`，与上游官方包（`juneix.embyx`）相互独立，可并存安装。
+
+### 播放与交互
+
+- **长按头像**：进入当前视频所在文件夹（最深非聚合祖先，`Recursive=false`）并自动定位到该视频；
+- **多选手势**：纵向滑动 = 原生滚动浏览，横向（含横向占优的斜向滑动）= 快速连选，方向一次判定锁定；
+- **宫格切换不中断播放**：切视图时整组移出/移回视频节点，原进度续播；
+- **服务器管理**：同一服务器的内外网地址保留为独立卡片（`findSameMachine`），仅按主地址精确合并；
+- **全量备份 / 恢复**（`js/backup.js`）：遍历全部偏好键（含黑名单过滤），恢复出厂默认保留服务器与登录态。
+
+### 界面与设置
+
+- 全量中文界面（`zh/`）与 i18n 词条；
+- 清屏显隐：一键隐藏全部界面浮层（顶栏 / 右列 / 进度条 / 左下角操作列同步显隐）；
+- 横屏自适应布局、文件夹导航、演员库、媒体库多入口；
+- 全局字体与界面偏好体系（`embyUiPrefs`，只存用户改动过的字段）。
+
+### Android 壳
+
+- Capacitor 8，原生桥接 `EmbyXNativeUI`（状态栏高度等），顶栏按钮按状态栏高度避让；
+- 上游 CI workflow 已移除，本仓库以本地构建为准。
+
+## 目录结构
 
 ```
-embyx/
-├── zh/               # 中文版资源
-├── en/               # 英文版资源
-├── pic/              # 图片素材
-├── docker/           # Docker 配置文件
-├── README.md         # 英文说明文档
-└── README_zh.md      # 中文说明文档
+zh/                    前端（HTML / JS / CSS / 图片）
+android/               Capacitor 安卓原生工程
+  app/src/main/java/   原生壳 MainActivity（含状态栏桥接）
+  app/src/main/assets/ 构建时由脚本同步前端产物
+docker/                Docker 构建与部署（nginx 静态托管 Web 版）
+scripts/               上游部署脚本
+pic/                   界面截图与宣传图
+capacitor.config.json  Capacitor 配置
 ```
 
----
+## 构建
 
-## 🚀 部署方式
+**环境要求**：JDK 21、Android SDK（compileSdk 34）、Node.js 18+。
 
-### 方式一：直接托管（推荐）
-
-只需将 `zh/` 文件夹中的所有文件放入你的 Web 服务器（Nginx、Apache 等）根目录即可。
-
-### 方式二：飞牛应用
-
-EmbyX 即将上架飞牛商店（审核中），加入交流群可下载 fpk 文件手动安装。
-
-### 方式三：Docker 部署
-
-不想折腾 Web 环境？那就直接 Docker 搞定。推荐使用 GHCR 获取更新；NAS 用户可使用 Docker Hub。
-
-#### 使用 Docker CLI: 
 ```bash
-docker run -d \
-  --name embyx \
-  --network host \
-  -e APP_LANG=zh \
-  -e APP_PORT=8090 \
-  ghcr.io/juneix/embyx
-  # docker.1ms.run/juneix/embyx # 毫秒镜像加速
+# 1. 安装依赖
+npm install
+
+# 2. 同步前端到安卓工程
+#    （等价 npx cap copy android，仅覆盖不删除）
+python sync_zh.py
+
+# 3. 构建签名 APK
+cd android
+./gradlew assembleRelease
+# 产物：android/app/build/outputs/apk/release/app-release.apk
 ```
 
-#### 使用 Docker Compose:
-```yaml
-services:
-  embyx:
-    image: ghcr.io/juneix/embyx 
-    # image: docker.1ms.run/juneix/embyx  # 毫秒镜像加速
-    container_name: embyx
-    restart: unless-stopped
-    network_mode: host
-    environment:
-      - APP_LANG=zh # 中文版
-      - APP_PORT=8090 # 访问端口
+> `sync_zh.py` 等价 `npx cap copy android`，把 `zh/` 复制到
+> `android/app/src/main/assets/public/`，不删除 Capacitor 生成的 cordova 文件。
+
+## Docker 部署
+
+```bash
+# 从本仓库源码构建镜像并启动（Web 版，包含本项目全部定制功能）
+docker compose -f docker/docker-compose.yml up -d --build
+
+# 或手动构建
+docker build -f docker/Dockerfile -t embyxpro:latest .
+docker run -d --network host -e APP_LANG=zh -e APP_PORT=8090 embyxpro:latest
 ```
 
+> ⚠️ **不要使用 `ghcr.io/juneix/embyx` 预构建镜像**——那是上游原版 EmbyX，
+> 不包含本项目的任何定制功能。本仓库的 `docker-compose.yml` 已改为从源码本地构建。
 
-## 🌟 Star History
+## 签名配置
 
-[![Star History Chart](https://api.star-history.com/svg?repos=juneix/embyx&type=Date)](https://star-history.com/#juneix/embyx&Date)
+本仓库**不包含任何密钥或口令**。`android/app/build.gradle` 的签名配置从环境变量读取，
+构建前需自行设置：
 
+| 环境变量 | 含义 |
+|---|---|
+| `SIGNING_STORE_PASSWORD` | keystore 口令 |
+| `SIGNING_KEY_PASSWORD` | key 口令 |
+| `SIGNING_KEYSTORE_PATH` | keystore 路径（可选，默认 `../keystore/embytok.jks`） |
 
-## 📝 开源协议
+未提供 keystore 时，可将 `build.gradle` 的 `signingConfig` 换成 `signingConfigs.debug`
+或使用未签名构建（`assembleRelease` 仍需签名配置，可临时改用 `assembleDebug`）。
 
-MIT License — 随意使用，欢迎 PR 和 Issue。
+## 免责声明
+
+本项目为个人二次定制，与上游 [juneix/EmbyX](https://github.com/juneix/EmbyX) 无隶属关系。
+使用需自行准备 Emby / Jellyfin 服务器。请在遵守当地法律法规的前提下使用。
