@@ -22,8 +22,8 @@
 |---|---|
 | ![个人中心](pic/screen-personal.png) | ![宫格视图](pic/screen-grid.png) |
 | **个人中心**：账号与服务器管理（多服务器卡片、编辑/设为主/一键删除）+ 全局设置 | **宫格视图**：海报墙 + 时长/进度标注 + 「正在播放」标记 |
-| ![选择媒体源](pic/screen-source.png) | ![横屏自适应](pic/screen-landscape.png) |
-| **选择媒体源**：所有媒体 / 收藏夹 / 演员 / 演员收藏 + 媒体库与播放列表网格 | **横屏自适应**：宽屏多列布局，手机横持同样顺手 |
+| ![选择媒体源](pic/screen-source.png) | ![播放界面](pic/screen-player.png) |
+| **选择媒体源**：所有媒体 / 收藏夹 / 演员 / 演员收藏 + 媒体库与播放列表网格 | **播放界面**：播放列表 / 收藏 / 五角星添加 / 观看状态 / 刷新连接 / 删除等快捷按钮 |
 
 ## 与上游 EmbyX 的差异
 
@@ -87,8 +87,8 @@ cd android
 docker compose -f docker/docker-compose.yml up -d --build
 
 # 或手动构建
-docker build -f docker/Dockerfile -t embyxpro:latest .
-docker run -d --network host -e APP_LANG=zh -e APP_PORT=8090 embyxpro:latest
+docker build -f docker/Dockerfile -t ghcr.io/tangzimeng/embyxpro:latest .
+docker run -d --network host -e APP_LANG=zh -e APP_PORT=8090 ghcr.io/tangzimeng/embyxpro:latest
 ```
 
 > ⚠️ **不要使用 `ghcr.io/juneix/embyx` 预构建镜像**——那是上游原版 EmbyX，

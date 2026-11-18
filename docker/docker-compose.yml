@@ -5,7 +5,7 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    image: embyxpro:latest
+    image: ghcr.io/tangzimeng/embyxpro:latest
     container_name: embyxpro
     restart: unless-stopped
     network_mode: host
