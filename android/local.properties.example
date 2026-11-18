@@ -1,0 +1,2 @@
+# 复制为 android/local.properties，并把路径改成本机 Android SDK
+sdk.dir=D\:\\path\\to\\android-sdk

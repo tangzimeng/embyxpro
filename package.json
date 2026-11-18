@@ -1,0 +1,16 @@
+{
+  "name": "embypro",
+  "version": "2.1.14",
+  "description": "Emby 短视频播放器",
+  "main": "index.js",
+  "scripts": {
+    "build:android": "npx cap copy android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.3.1",
+    "@capacitor/core": "^8.3.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.3.1"
+  }
+}

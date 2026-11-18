@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">EmbyX Pro</string>
+    <string name="title_activity_main">EmbyPro</string>
+    <string name="package_name">com.embypro.egglab</string>
+    <string name="custom_url_scheme">com.embypro.egglab</string>
+</resources>

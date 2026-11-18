@@ -1,0 +1,105 @@
+# EmbyX Pro
+
+基于 [juneix/EmbyX](https://github.com/juneix/EmbyX)（MIT License）深度定制的 Android 客户端正式发行版。
+
+> 本项目遵循上游 MIT 许可，保留原始版权声明（见 [LICENSE](./LICENSE)）。
+> 上游原版说明见 [README_UPSTREAM.md](./README_UPSTREAM.md)。
+
+| 项目 | 说明 |
+|---|---|
+| 应用名 | `EmbyX Pro` |
+| applicationId | `com.embypro.egglab` |
+| versionName / versionCode | `2.1.14` / `138` |
+| 前端 | 原生 JS（`zh/`），无框架 |
+| 原生壳 | Capacitor 8 + Android（`android/`） |
+| 签名 | 详见下方「签名配置」 |
+
+---
+
+## 与上游 EmbyX 的差异
+
+本仓库在上游基础上做了长期的功能定制与体验优化，主要差异如下。
+
+### 品牌
+
+- 应用名 `EmbyX Pro`，包名 `com.embypro.egglab`，与上游官方包（`juneix.embyx`）相互独立，可并存安装。
+
+### 内置 EmbyX Lab
+
+- 投屏弹窗新增 **Lab** 入口按钮，个人中心新增 **头号玩家** 徽章；
+- 内置激活码体系（`donate.js` / DonateManager），Lab 空间集成激活与说明；
+- **画质 / 短剧 / 投屏三道授权门**：未激活时点击「画质」或「短剧」按钮直达 Lab。
+
+### 播放与交互
+
+- **HLS 播放优化**：预加载策略（`preloadOnly`）、稳定 PlaySessionId，起播更快、换集不卡顿；
+- **播放隔离**：切到宫格/后台时自动降低非前台视频负载，前台播放不受其他视频影响；
+- **长按头像**：进入当前视频所在文件夹（最深非聚合祖先，`Recursive=false`）并自动定位到该视频；
+- **多选手势**：纵向滑动 = 原生滚动浏览，横向（含横向占优的斜向滑动）= 快速连选，方向一次判定锁定；
+- **宫格切换不中断播放**：切视图时整组移出/移回视频节点，原进度续播；
+- **服务器管理**：同一服务器的内外网地址保留为独立卡片（`findSameMachine`），仅按主地址精确合并；
+- **全量备份 / 恢复**（`js/backup.js`）：遍历全部偏好键（含黑名单过滤），恢复出厂默认保留服务器与登录态。
+
+### 界面与设置
+
+- 全量中文界面（`zh/`）与 i18n 词条；
+- 清屏显隐：一键隐藏全部界面浮层（顶栏 / 右列 / 进度条 / 左下角操作列同步显隐）；
+- 横屏自适应布局、文件夹导航、演员库、媒体库多入口；
+- 全局字体与界面偏好体系（`embyUiPrefs`，只存用户改动过的字段）。
+
+### Android 壳
+
+- Capacitor 8，原生桥接 `EmbyXNativeUI`（状态栏高度等），顶栏按钮按状态栏高度避让；
+- 上游 CI workflow 已移除，本仓库以本地构建为准。
+
+## 目录结构
+
+```
+zh/                    前端（HTML / JS / CSS / 图片）
+android/               Capacitor 安卓原生工程
+  app/src/main/java/   原生壳 MainActivity（含状态栏桥接）
+  app/src/main/assets/ 构建时由脚本同步前端产物
+docker/                上游 Docker 部署配置
+scripts/               上游部署脚本
+capacitor.config.json  Capacitor 配置
+```
+
+## 构建
+
+**环境要求**：JDK 21、Android SDK（compileSdk 34）、Node.js 18+。
+
+```bash
+# 1. 安装依赖
+npm install
+
+# 2. 同步前端到安卓工程
+#    （等价 npx cap copy android，仅覆盖不删除）
+python sync_zh.py
+
+# 3. 构建签名 APK
+cd android
+./gradlew assembleRelease
+# 产物：android/app/build/outputs/apk/release/app-release.apk
+```
+
+> `sync_zh.py` 等价 `npx cap copy android`，把 `zh/` 复制到
+> `android/app/src/main/assets/public/`，不删除 Capacitor 生成的 cordova 文件。
+
+## 签名配置
+
+本仓库**不包含任何密钥或口令**。`android/app/build.gradle` 的签名配置从环境变量读取，
+构建前需自行设置：
+
+| 环境变量 | 含义 |
+|---|---|
+| `SIGNING_STORE_PASSWORD` | keystore 口令 |
+| `SIGNING_KEY_PASSWORD` | key 口令 |
+| `SIGNING_KEYSTORE_PATH` | keystore 路径（可选，默认 `../keystore/embytok.jks`） |
+
+未提供 keystore 时，可将 `build.gradle` 的 `signingConfig` 换成 `signingConfigs.debug`
+或使用未签名构建（`assembleRelease` 仍需签名配置，可临时改用 `assembleDebug`）。
+
+## 免责声明
+
+本项目为个人二次定制，与上游 [juneix/EmbyX](https://github.com/juneix/EmbyX) 无隶属关系。
+使用需自行准备 Emby / Jellyfin 服务器。请在遵守当地法律法规的前提下使用。

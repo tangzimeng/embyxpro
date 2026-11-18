@@ -1,0 +1,12 @@
+{
+  "appId": "com.embypro.egglab",
+  "appName": "EmbyPro",
+  "webDir": "zh",
+  "server": {
+    "androidScheme": "http",
+    "allowNavigation": ["*"]
+  },
+  "android": {
+    "allowMixedContent": true
+  }
+}
