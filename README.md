@@ -108,20 +108,7 @@ docker pull ghcr.io/tangzimeng/embyxpro:latest
 docker run -d --name embyxpro --restart unless-stopped --network host -e APP_LANG=zh -e APP_PORT=8090 ghcr.io/tangzimeng/embyxpro:latest
 ```
 
-访问 `http://设备IP:8090`。中文/英文由 `APP_LANG` 控制（默认 zh）。.
-yml文件
-services:
-  embyx:
-    # 镜像由本仓库 .github/workflows/build-docker.yml 在云端自动构建并推送到 GHCR
-    # 直接拉取即可，无需登录、无需本机编译（含本项目全部定制功能）
-    image: ghcr.io/tangzimeng/embyxpro:latest
-    container_name: embyxpro
-    restart: unless-stopped
-    network_mode: host
-    environment:
-      - APP_LANG=zh # zh (中文), en (English)
-      - APP_PORT=8090 # 访问端口 (Access Port)
-      
+访问 `http://设备IP:8090`。中文/英文由 `APP_LANG` 控制（默认 zh）。
 ## 签名配置
 
 本仓库**不包含任何密钥或口令**。`android/app/build.gradle` 的签名配置从环境变量读取，
