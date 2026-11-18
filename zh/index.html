@@ -136,13 +136,22 @@
 
             /* 格子视图下的特殊“清屏”：保留底部栏，隐藏播放器相关 UI */
             .grid-active .bottom-info,
-            .grid-active #progressDock,
+            .grid-active #progressDock {
+                @apply opacity-0 pointer-events-none transition-opacity duration-300;
+            }
+
+            /* v2.1.15：视频列表（宫格）里把播放器操作列整列去掉 —— 左下角的随机 / 画质 /
+               倍速 / 刷新 / 已看，以及右列与顶部按钮组。
+               必须用 display:none 而不是 opacity:0：用户一旦在「图标区域」里调过
+               「图标透明度」，ui-prefs.js 会给 .left-toolbar 注入 `opacity:1 !important`，
+               把这里的 opacity:0 顶掉（表现：进视频列表后左下角还留着倍速等按钮）。
+               清屏态（.interface-hidden）不受影响，点屏临时唤醒后图标仍可点。 */
             .grid-active .left-toolbar,
             .grid-active .right-toolbar,
             .grid-active #topLeftGroup,
             .grid-active #topRightGroup,
             .grid-active #feedModeBar {
-                @apply opacity-0 pointer-events-none transition-opacity duration-300;
+                display: none !important;
             }
 
             /* 原生画中画 (PiP) 模式：清空所有叠加层，只留纯净视频画面 */
@@ -1164,7 +1173,7 @@
                                     <div style="display: flex; align-items: center; gap: 8px;" data-page-node-id="21xVisQcmmz2fFRMgZDtZv">
                                         <h3 class="text-white font-bold text-2xl tracking-tight" data-page-node-id="UVp0WAqaWOktdNU2bmrIJt">EmbyX Pro</h3>
                                         <span id="appVersionBadge"
-                                            class="px-2 py-0.5 bg-primary/20 text-primary text-xs font-bold rounded-full border border-primary/30" data-page-node-id="fo0iU3uNsGImABQQcNOmhJ">v2.1.14</span>
+                                            class="px-2 py-0.5 bg-primary/20 text-primary text-xs font-bold rounded-full border border-primary/30" data-page-node-id="fo0iU3uNsGImABQQcNOmhJ">v2.1.15</span>
                                         <span id="playerOneBadge" onclick="window.DonateManager?.showDonateModal()" title="点击查看头号玩家通行证"
                                             class="hidden px-2.5 py-0.5 bg-amber-500/20 text-amber-300 text-xs font-bold rounded-full border border-amber-500/40 items-center gap-1 shadow-sm cursor-pointer active:scale-95 transition-transform">
                                             <i data-lucide="gem" class="w-3.5 h-3.5"></i>头号玩家

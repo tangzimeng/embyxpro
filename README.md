@@ -1,6 +1,6 @@
 # EmbyX Pro
 
-基于 [juneix/EmbyX](https://github.com/juneix/EmbyX)（MIT License）深度定制的 Android 客户端正式发行版。
+基于 [juneix/EmbyX](https://github.com/juneix/EmbyX)（MIT License）深度定制的客户端正式发行版。
 
 > 本项目遵循上游 MIT 许可，保留原始版权声明（见 [LICENSE](./LICENSE)）。
 > 上游原版说明见 [README_UPSTREAM.md](./README_UPSTREAM.md)。
@@ -9,10 +9,25 @@
 |---|---|
 | 应用名 | `EmbyX Pro` |
 | applicationId | `com.embypro.egglab` |
-| versionName / versionCode | `2.1.14` / `138` |
+| versionName / versionCode | `2.1.15` / `139` |
 | 前端 | 原生 JS（`zh/`），无框架 |
 | 原生壳 | Capacitor 8 + Android（`android/`） |
 | 签名 | 详见下方「签名配置」 |
+
+---
+
+## 下载
+
+最新正式版见 [Releases](https://github.com/tangzimeng/embyxpro/releases)：
+
+| 平台 | 文件 | 说明 |
+|---|---|---|
+| Android | `embypro-v2.1.15.apk` | 已签名，直接安装；与上游包可并存 |
+| Windows | `EmbyXPro-Portable.exe` | 单文件便携版，双击即用，免安装 |
+
+Windows 版所有数据统一存放在 exe 同级的 `EmbyXProData/`：登录态、偏好、缓存、日志、临时文件都在里面，
+不写 `%APPDATA%` / `%LOCALAPPDATA%` / `%TEMP%`；升级只替换 exe，数据原样保留。
+迁移只需拷贝「exe + 数据夹」两样。
 
 ---
 
